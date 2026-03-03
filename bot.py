@@ -35,10 +35,15 @@ logger = logging.getLogger(__name__)
 # ─── UTILIDADES ──────────────────────────────────────────────────
 
 def get_keyboard():
-    return InlineKeyboardMarkup([[
-        InlineKeyboardButton("INFORMACION", url=URL_INFORMACION),
-        InlineKeyboardButton("ADQUIRIR!",   url=URL_ADQUIRIR),
-    ]])
+    btn_info = InlineKeyboardButton("INFORMACION", url=URL_INFORMACION).to_dict()
+    btn_info["style"] = "success"
+    btn_info["icon_custom_emoji_id"] = "5458603043203327669"
+
+    btn_adq = InlineKeyboardButton("ADQUIRIR!", url=URL_ADQUIRIR).to_dict()
+    btn_adq["style"] = "danger"
+    btn_adq["icon_custom_emoji_id"] = "5231005931550030290"
+
+    return {"inline_keyboard": [[btn_info, btn_adq]]}
 
 def time_str():
     return datetime.now().strftime("%I:%M:%S %p")
@@ -293,3 +298,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
